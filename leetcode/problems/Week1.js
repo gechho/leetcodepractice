@@ -101,3 +101,44 @@ console.log(hammingWeight(00000000000000000000000010000000));
 
 
 // 1779. Find Nearest Point That Has the Same X or Y Coordinate
+/*
+ * @param {number} x
+ * @param {number} y
+ * @param {number[][]} points
+ * @return {number}
+ */
+const nearestValidPoint = (x, y, points) => {
+    let closestDist = Infinity;
+    let idx = -1;
+    for (let i = 0; i < points.length; i++)
+        if (x == points[i][0] || y == points[i][1]){
+            const dist = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
+            if (dist < closestDist){
+                closestDist = dist;
+                idx = i;
+            }
+        }
+    return idx;
+};
+
+
+// 1822. Sign of the Product of an Array
+
+var arraySign = function(nums) {
+    if(nums.includes(0)) return 0;
+    return (nums.filter(item => item < 0).length % 2 === 0 ? 1 : -1);
+};
+
+// OR
+var arraySign = function(nums) {
+    let count=0
+    for(let i=0;i<nums.length;i++){
+       
+        if(nums[i]===0) return 0
+        if(nums[i]<0){
+            count++
+        }
+    }
+    return (count%2===0)?1:-1
+   
+};
