@@ -21,6 +21,7 @@ console.log(countOdds(3,7));
  * @param {number[]} salary
  * @return {number}
  */
+
 var average = function(salary) {
     // console.log(salary);
     let nl=salary.length-2;
@@ -120,7 +121,7 @@ const nearestValidPoint = (x, y, points) => {
         }
     return idx;
 };
-
+// Day4********************************************
 
 // 1822. Sign of the Product of an Array
 
@@ -142,3 +143,48 @@ var arraySign = function(nums) {
     return (count%2===0)?1:-1
    
 };
+
+
+// 1502. Can Make Arithmetic Progression From Sequence
+/*
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+ var canMakeArithmeticProgression = function(arr) {
+    for (i=0;i<arr.length-2; i++){
+         arr.sort((a,b)=> a-b);
+        return (arr[i]+arr[i+2] === 2 * arr[i+1]) ? true:false;
+    }
+    
+};
+
+//
+var canMakeArithmeticProgression = function(arr) {
+    arr.sort(function(a,b){return a-b});
+    var dif = arr[1] - arr[0];
+    for(var i=2;i<arr.length;i++){
+        if(arr[i]-arr[i-1] !== dif){
+            return false;
+        }
+    }
+    return true;
+};
+
+
+
+// 202. Happy Number
+var isHappy = function (n) {
+    let happyNumber = false;
+    let arr = Array.from(String(n));
+    do {
+        let sumx = 0;
+        arr.forEach(element => {
+            sumx += Number(element) ** 2;
+        });
+        arr = Array.from(String(sumx));
+        (sumx == 1) ? happyNumber = true : false;
+    }
+    while ((arr != 1) && (arr != 4));
+            
+    return happyNumber;
+}
