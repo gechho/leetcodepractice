@@ -188,3 +188,124 @@ var isHappy = function (n) {
             
     return happyNumber;
 }
+
+//OR
+function isHappy(n) {
+    let slow = fast = n;
+    while (true) {
+      slow = sq(slow);
+      fast = sq(sq(fast));
+      if (slow === fast) break;
+    }
+    
+    return slow === 1;
+  }
+  
+  function sq(num) {
+    let sum = 0;
+    while (num > 0) {
+      let d = num % 10;
+      sum += d * d;
+      num = Math.floor(num/10);
+    }
+    return sum;
+  }
+
+  console.log(isHappy(117));
+
+  //1790. Check if One String Swap Can Make Strings Equal
+  var areAlmostEqual = function(s1, s2) {
+    if (s1.length !==s2.length) return false;
+    else {
+        let n =0;
+        let arr1 = [];
+        let arr2 = [];
+        for (i=0;i<s1.length;i++){
+            if (s1[i] !== s2[i]){  
+                arr1.push(s1[i]);
+                arr2.push(s2[i]);
+                n++;
+            }
+        }
+        if (n>2) return false;
+        else {
+            return (arr1.sort().join("") == arr2.sort().join(""))? true:false;
+        }
+    }
+};
+
+// Day5
+// 589. N-ary Tree Preorder Traversal
+/*
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/*
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+ var preorder = function(root) {
+    arr = root.split("null");
+    console.log(arr);
+    
+};
+
+// 496. Next Greater Element I
+
+var nextGreaterElement = function (nums1, nums2) {
+    let ans = [];
+    console.log(nums1, nums2);
+    for (i = 0; i < nums1.length; i++) {
+        let indexSearch = nums2.indexOf(nums1[i]);
+        let nextGreater = -1;
+        let greaterNumberFound = false;
+        for (j = indexSearch + 1; j < nums2.length; j++) {
+            if ((nums2[j] > nums1[i]) && (greaterNumberFound == false)) {
+                nextGreater = nums2[j];
+                greaterNumberFound = true;
+            }
+        }
+        if (greaterNumberFound == true) {
+            ans.push(nextGreater);
+        }
+        else if (nextGreater == -1) {
+            ans.push(-1);
+        }
+    }
+    return ans;
+}
+
+// OR
+var nextGreaterElement = function(nums1, nums2) {
+    const res = []
+    for(let n of nums1){
+      const idx = nums2.indexOf(n)
+      let c = idx+1, found = -1
+      while(nums2[idx] > nums2[c]) c++
+      if(c<nums2.length) found = nums2[c]
+      res.push(found)
+    }
+    return res
+  };
+  //OR
+  var nextGreaterElement = function(nums1, nums2) {
+    let result = [];
+    for(let v of nums1) {
+        const i = nums2.indexOf(v);
+        let find = false;
+        for(let j = i + 1; j < nums2.length; j++) {
+            if(nums2[j] > v) {
+                result.push(nums2[j]);
+                find = true;
+                break;
+            }
+        }
+        if(!find)
+            result.push(-1);     
+    }
+    return result;
+};

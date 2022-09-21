@@ -1,6 +1,10 @@
 // var canMakeArithmeticProgression = function(arr) {
 //     arr.sort((a,b)=> a-b);
 
+const { Console } = require("console");
+const { type } = require("os");
+const { isString } = require("util");
+
 
 
 //     for (i=0;i<arr.length;i++) {
@@ -35,52 +39,26 @@
 //     "hello"
 // )
 // console.log(canMakeArithmeticProgression([1,2,5]));
+// 589. N-ary Tree Preorder Traversal
 
-var isHappy = function (n) {
-    let happyNumber = false;
+//   Definition for a Node.
+// function Node(val, children) {
+//     this.val = val;
+//     this.children = children;
+//   };
 
-    let arr = Array.from(String(n));
-    let final = 1;
+// /*
+//  * @param {Node|null} root
+//  * @return {number[]}
+//  */
+// var preorder = function(root) {
+//     console.log(Node(root));
+// };
 
-    let sqsum = 0;
-
-    do {
-        let sumx = 0;
-        //first time running = arr[0] sq + arr[1] sq 
-        // console.log ("Run# " + sqsum);
-        // sqsum += 1;
-
-
-        // let sumx = Number(arr[0])**2 + Number(arr[1]**2);
-        arr.forEach(element => {
-            sumx += Number(element) ** 2;
-            // console.log('sumx is :' + sumx);
-
-        });
-        arr = Array.from(String(sumx));
-        (sumx == 1) ? happyNumber = true : false;
-        // (sumx == 4) ? happyNumber = false : false;
-        // console.log(arr);
-        // console.log(arr.map(Number).join(""));
+// preorder([1,null,3,2,4,null,5,6])
 
 
 
 
-    }
-    while (((arr.map(Number).join("")) != 1) && (arr.map(Number).join("")) != 4);
-    // while ( (arr.length > 1 ) && (arr[0]!=='1')  );
 
-
-
-    // // n = n.toString().split("");
-    // console.log(n);
-    // let total = 0;
-
-    //     for (i=0; i<n.length;i++){
-    //         total +=i;
-    //         console.log(total);
-    //         (i-(n.length -1))===0 ? console.log(total):false;
-    //     }
-    // }
-
-    return happyNumber;
+console.log(nextGreaterElement([1, 3, 5, 2, 4], [6, 5, 4, 3, 2, 1, 7]));
