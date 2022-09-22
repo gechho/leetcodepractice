@@ -309,3 +309,84 @@ var nextGreaterElement = function(nums1, nums2) {
     }
     return result;
 };
+
+// 589. N-ary Tree Preorder Traversal
+
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/*
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+
+var preorder = function(root) {
+    const result1 = [];
+     
+     function geT(obj) {
+        for (const prop in obj) {
+        const value = obj[prop];
+        if (typeof value === "object") {
+          geT(value);
+        } else  {
+          result1.push(value);     
+        }
+      }
+        return result1;
+    }
+     
+     
+    return geT(root,result1);
+  
+
+}
+
+//a example to help understand the structure of tree node
+ var preorder = function(root) {
+    console.log(root);
+    const result = [];
+    for (const prop in root) {
+        const value = root[prop];
+    
+        if (typeof value === 'object') {
+            result.push(preorder(value)); // <- recursive call
+        }
+        else {
+            result.push(value);
+        }
+    }
+    return result;
+    
+};
+
+const data = {
+    code: 42,
+    items: [{
+      id: 1,
+      name: 'foo'
+    }, {
+      id: 2,
+      name: 'bar'
+    }]
+  };
+  
+  
+  function toArray(obj) {
+    const result = [];
+    for (const prop in obj) {
+      const value = obj[prop];
+      if (typeof value === 'object') {
+        result.push(toArray(value));
+      } else {
+        result.push(value);
+      }
+    }
+    return result;
+  }
+  
+  console.log(toArray(data));
