@@ -1,6 +1,7 @@
 //****************************************   Day 1    ***********************************************
 //*******************************  1523. Count Odd Numbers in an Interval Range   *******************
-//
+//Given two non-negative integers low and high. Return the count of odd numbers between low and high (inclusive).
+
 const { count } = require("console");
 
 var countOdds = function(low, high) {
@@ -19,8 +20,11 @@ console.log(countOdds(3,7));
 
 
 //***************  1491. Average Salary Excluding the Minimum and Maximum Salary   *****************
+//You are given an array of unique integers salary where salary[i] is the salary of the ith employee.
+// Return the average salary of employees excluding the minimum and maximum salary. 
+// Answers within 10-5 of the actual answer will be accepted.
 
-//
+ 
 /*
  * @param {number[]} salary
  * @return {number}
@@ -43,7 +47,7 @@ console.log(average(average[2809,34254,3432,5566]));
 
 
 
-// 9. Palindrome Number
+// *******************************  9. Palindrome Number   *******************************
 var isPalindrome = function(x) {
     let z = x.toString();
     let y = z.split("").reverse().join("");
@@ -60,7 +64,17 @@ console.log(isPalindrome(123));
 
 
 
-// 191. Number of 1 Bits
+// *******************************  191. Number of 1 Bits   ************************************************
+// Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as 
+// the Hamming weight).
+
+// Note:
+// Note that in some languages, such as Java, there is no unsigned integer type. 
+// In this case, the input will be given as a signed integer type. It should not affect your implementation,
+//  as the integer's internal binary representation is the same, whether it is signed or unsigned.
+// In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3, 
+// the input represents the signed integer. -3.
+
 /*
  * @param {number} n - a positive integer
  * @return {number}
@@ -73,7 +87,7 @@ var hammingWeight = function(n) {
 console.log(hammingWeight(00000000000000000000000010000000));
 
 
-// 1281. Subtract the Product and Sum of Digits of an Integer
+// **************************  1281. Subtract the Product and Sum of Digits of an Integer ***************************
 /*
  * @param {number} n
  * @return {number}
@@ -89,7 +103,7 @@ console.log(hammingWeight(00000000000000000000000010000000));
 };
 
 
-// 976. Largest Perimeter Triangle
+//*************************************** 976. Largest Perimeter Triangle ***************************************
 /*
  * @param {number[]} nums
  * @return {number}
@@ -107,9 +121,8 @@ console.log(hammingWeight(00000000000000000000000010000000));
     };
 
 
-// 1779. Find Nearest Point That Has the Same X or Y Coordinate
-/*
- * @param {number} x
+// *************************  1779. Find Nearest Point That Has the Same X or Y Coordinate  *********************
+ /* @param {number} x
  * @param {number} y
  * @param {number[][]} points
  * @return {number}
@@ -127,9 +140,9 @@ const nearestValidPoint = (x, y, points) => {
         }
     return idx;
 };
-// Day4********************************************
+// ***************************************        Day4       ********************************************
 
-// 1822. Sign of the Product of an Array
+// ***************************************  1822. Sign of the Product of an Array  **********************
 
 var arraySign = function(nums) {
     if(nums.includes(0)) return 0;
@@ -151,7 +164,7 @@ var arraySign = function(nums) {
 };
 
 
-// 1502. Can Make Arithmetic Progression From Sequence
+// *************************  1502. Can Make Arithmetic Progression From Sequence  **********************
 /*
  * @param {number[]} arr
  * @return {boolean}
@@ -178,7 +191,7 @@ var canMakeArithmeticProgression = function(arr) {
 
 
 
-// 202. Happy Number
+// ***************************************  202. Happy Number  ***************************************
 var isHappy = function (n) {
     let happyNumber = false;
     let arr = Array.from(String(n));
@@ -219,7 +232,7 @@ function isHappy(n) {
 
   console.log(isHappy(117));
 
-  //1790. Check if One String Swap Can Make Strings Equal
+  //****************************  1790. Check if One String Swap Can Make Strings Equal ******************
   var areAlmostEqual = function(s1, s2) {
     if (s1.length !==s2.length) return false;
     else {
@@ -240,85 +253,9 @@ function isHappy(n) {
     }
 };
 
-// Day5
-// 589. N-ary Tree Preorder Traversal
+// ***************************************   Day 5  ******************************************************
+// ***************************** 589. N-ary Tree Preorder Traversal **************************************
 /*
- * // Definition for a Node.
- * function Node(val, children) {
- *    this.val = val;
- *    this.children = children;
- * };
- */
-
-/*
- * @param {Node|null} root
- * @return {number[]}
- */
- var preorder = function(root) {
-    arr = root.split("null");
-    console.log(arr);
-    
-};
-
-// 496. Next Greater Element I
-
-var nextGreaterElement = function (nums1, nums2) {
-    let ans = [];
-    console.log(nums1, nums2);
-    for (i = 0; i < nums1.length; i++) {
-        let indexSearch = nums2.indexOf(nums1[i]);
-        let nextGreater = -1;
-        let greaterNumberFound = false;
-        for (j = indexSearch + 1; j < nums2.length; j++) {
-            if ((nums2[j] > nums1[i]) && (greaterNumberFound == false)) {
-                nextGreater = nums2[j];
-                greaterNumberFound = true;
-            }
-        }
-        if (greaterNumberFound == true) {
-            ans.push(nextGreater);
-        }
-        else if (nextGreater == -1) {
-            ans.push(-1);
-        }
-    }
-    return ans;
-}
-
-// OR
-var nextGreaterElement = function(nums1, nums2) {
-    const res = []
-    for(let n of nums1){
-      const idx = nums2.indexOf(n)
-      let c = idx+1, found = -1
-      while(nums2[idx] > nums2[c]) c++
-      if(c<nums2.length) found = nums2[c]
-      res.push(found)
-    }
-    return res
-  };
-  //OR
-  var nextGreaterElement = function(nums1, nums2) {
-    let result = [];
-    for(let v of nums1) {
-        const i = nums2.indexOf(v);
-        let find = false;
-        for(let j = i + 1; j < nums2.length; j++) {
-            if(nums2[j] > v) {
-                result.push(nums2[j]);
-                find = true;
-                break;
-            }
-        }
-        if(!find)
-            result.push(-1);     
-    }
-    return result;
-};
-
-// 589. N-ary Tree Preorder Traversal
-
-/**
  * // Definition for a Node.
  * function Node(val, children) {
  *    this.val = val;
@@ -398,7 +335,64 @@ const data = {
   console.log(toArray(data));
 
 
-  // 1672. Richest Customer Wealth
+// *************************************** 496. Next Greater Element I ***************************************
+
+var nextGreaterElement = function (nums1, nums2) {
+    let ans = [];
+    console.log(nums1, nums2);
+    for (i = 0; i < nums1.length; i++) {
+        let indexSearch = nums2.indexOf(nums1[i]);
+        let nextGreater = -1;
+        let greaterNumberFound = false;
+        for (j = indexSearch + 1; j < nums2.length; j++) {
+            if ((nums2[j] > nums1[i]) && (greaterNumberFound == false)) {
+                nextGreater = nums2[j];
+                greaterNumberFound = true;
+            }
+        }
+        if (greaterNumberFound == true) {
+            ans.push(nextGreater);
+        }
+        else if (nextGreater == -1) {
+            ans.push(-1);
+        }
+    }
+    return ans;
+}
+
+// OR
+var nextGreaterElement = function(nums1, nums2) {
+    const res = []
+    for(let n of nums1){
+      const idx = nums2.indexOf(n)
+      let c = idx+1, found = -1
+      while(nums2[idx] > nums2[c]) c++
+      if(c<nums2.length) found = nums2[c]
+      res.push(found)
+    }
+    return res
+  };
+  //OR
+  var nextGreaterElement = function(nums1, nums2) {
+    let result = [];
+    for(let v of nums1) {
+        const i = nums2.indexOf(v);
+        let find = false;
+        for(let j = i + 1; j < nums2.length; j++) {
+            if(nums2[j] > v) {
+                result.push(nums2[j]);
+                find = true;
+                break;
+            }
+        }
+        if(!find)
+            result.push(-1);     
+    }
+    return result;
+};
+
+
+// *******************************  1672. Richest Customer Wealth  ******************************* 
 // You are given an m x n integer grid accounts where accounts[i][j] is the amount of money
 // the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
 
