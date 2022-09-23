@@ -46,8 +46,8 @@ console.log(average(average[2809,34254,3432,5566]));
 
 
 
-
-// *******************************  9. Palindrome Number   *******************************
+//****************************************   Day 2    ***********************************************
+// *******************************  9. Palindrome Number   ******************************************
 var isPalindrome = function(x) {
     let z = x.toString();
     let y = z.split("").reverse().join("");
@@ -87,7 +87,7 @@ var hammingWeight = function(n) {
 console.log(hammingWeight(00000000000000000000000010000000));
 
 
-// **************************  1281. Subtract the Product and Sum of Digits of an Integer ***************************
+// **************************  1281. Subtract the Product and Sum of Digits of an Integer **************
 /*
  * @param {number} n
  * @return {number}
@@ -103,7 +103,9 @@ console.log(hammingWeight(00000000000000000000000010000000));
 };
 
 
-//*************************************** 976. Largest Perimeter Triangle ***************************************
+
+//****************************************   Day 3    ***********************************************
+//*************************************** 976. Largest Perimeter Triangle ***************************
 /*
  * @param {number[]} nums
  * @return {number}
@@ -121,7 +123,7 @@ console.log(hammingWeight(00000000000000000000000010000000));
     };
 
 
-// *************************  1779. Find Nearest Point That Has the Same X or Y Coordinate  *********************
+// *************************  1779. Find Nearest Point That Has the Same X or Y Coordinate  **************
  /* @param {number} x
  * @param {number} y
  * @param {number[][]} points
@@ -390,6 +392,74 @@ var nextGreaterElement = function(nums1, nums2) {
     }
     return result;
 };
+
+
+// ************************************ 1232. Check If It Is a Straight Line  ************************************
+// You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point.
+//  Check if these points make a straight line in the XY plane.
+
+/*
+ * @param {number[][]} coordinates
+ * @return {boolean}
+ */
+ var checkStraightLine = function (coordinates) {
+    var [[x0, y0], [x1, y1]] = coordinates,
+      slope = (y1 - y0) / (x1 - x0);
+  
+    return (
+      coordinates.every(([x, y], i) => (y - y0) / (x - x0) === slope || !i) ||
+      coordinates.every(([x, _]) => x == x0)
+    );
+  };
+
+//****************************************   Day 6    ***********************************************
+// ******************************    283. Move Zeroes   *********************************************
+
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
+/*
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+ var moveZeroes = function (nums) {
+    let findZeros = false;
+    for (i = nums.length-1; i >=0; i--) {
+        if (nums[i] == 0){
+            nums.push(nums.splice(i,1)[0]);
+        }        
+    }
+    return nums;
+};
+
+
+// **************************************** 1588. Sum of All Odd Length Subarrays *****************************
+// Given an array of positive integers arr, return the sum of all possible odd-length subarrays of arr.
+
+// A subarray is a contiguous subsequence of the array.
+/*
+ * @param {number[]} arr
+ * @return {number}
+ */
+ var sumOddLengthSubarrays = function(arr) {
+    let sum = 0;
+    for (var i=1;i<=arr.length;i+=2){
+        for(j=0;j<=arr.length-i;j++) {
+            let newArr = [];
+            newArr = arr.slice(j,i+j);
+            // console.log('newArr:'+newArr);
+            // console.log('i:'+i+'j:'+j);
+            newArr.forEach(element => sum +=element);
+                
+            }
+    }
+    return sum;
+ };
+
+
+
+
+
 
 
 // *******************************  1672. Richest Customer Wealth  ******************************* 
