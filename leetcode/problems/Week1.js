@@ -1,5 +1,6 @@
-
-//1523. Count Odd Numbers in an Interval Range
+//****************************************   Day 1    ***********************************************
+//*******************************  1523. Count Odd Numbers in an Interval Range   *******************
+//
 const { count } = require("console");
 
 var countOdds = function(low, high) {
@@ -16,7 +17,10 @@ return c;
 
 console.log(countOdds(3,7));
 
-//1491. Average Salary Excluding the Minimum and Maximum Salary
+
+//***************  1491. Average Salary Excluding the Minimum and Maximum Salary   *****************
+
+//
 /*
  * @param {number[]} salary
  * @return {number}
@@ -35,6 +39,8 @@ var average = function(salary) {
     
 };
 console.log(average(average[2809,34254,3432,5566]));
+
+
 
 
 // 9. Palindrome Number
@@ -390,3 +396,113 @@ const data = {
   }
   
   console.log(toArray(data));
+
+
+  // 1672. Richest Customer Wealth
+// You are given an m x n integer grid accounts where accounts[i][j] is the amount of money
+// the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
+
+// A customer's wealth is the amount of money they have in all their bank accounts.
+// The richest customer is the customer that has the maximum wealth.
+/*
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+var maximumWealth = function (accounts) {
+    let list = [];
+  
+
+    for (x of accounts) {
+
+      let wealth = 0;
+      // console.log('subarray: '+x);
+      for (y of x) {
+        wealth += y;
+      }
+      list.push(wealth);
+    }
+    return Math.max(...list);
+  };
+
+//  solution 2***************using forEach()instead of for loop
+var maximumWealth = function (accounts) {
+    let list = [];
+  
+    accounts.forEach(x=>{
+      let wealth = 0;
+      x.forEach(y => wealth += y);
+      list.push(wealth);
+    })
+    return Math.max(...list);
+  }
+
+
+
+//****************************************   Day 7    ***********************************************
+//*******************************  1572. Matrix Diagonal Sum   **************************************
+
+// Given a square matrix mat, return the sum of the matrix diagonals.
+// Only include the sum of all the elements on the primary diagonal
+// and all the elements on the secondary diagonal that are not part of the primary diagonal.
+var diagonalSum = function (mat) {
+    let sum = 0;
+    let n = mat.length;
+    for (i = 0; i < n; i++) {
+      sum += mat[i][i];
+      if (i !== n - 1 - i) {
+        sum += mat[i][n - 1 - i];
+      } else {
+        continue;
+      }
+    }
+    return sum;
+  };
+console.log(
+  diagonalSum([
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+  ])
+);
+
+
+
+//*******************************  566. Reshape the Matrix   **************************************
+/*
+In MATLAB, there is a handy function called reshape which can reshape an m x n matrix into a new one with a 
+different size r x c keeping its original data.You are given an m x n matrix mat and two integers r and
+ c representing the number of rows and the number of columns of the wanted reshaped matrix.
+The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order 
+as they were.
+
+If the reshape operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, 
+output the original matrix.
+*/
+
+/*
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+ var matrixReshape = function (mat, r, c) {
+    // console.log(mat,r,c);
+    let m = mat.length;
+    let n = mat[0].length;
+    let newMat = [];
+    let finalMat =[];
+    if (r * c !== m * n) return mat;
+    else {    
+      mat.forEach((element) => {
+        element.forEach((item) => {
+          newMat.push(item);
+          if(newMat.length === c){
+              finalMat.push(newMat);
+              newMat = [];
+          }
+        });
+      });
+      }
+    return finalMat;
+  };
