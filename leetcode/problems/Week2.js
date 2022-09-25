@@ -70,3 +70,43 @@ var findTheDifference = function (s, t) {
 //****************************************   Day 9    **********************************************************
 // *************************************  709. To Lower Case  **************************************************
 // Given a string s, return the string after replacing every uppercase letter with the same lowercase letter.
+// You are given a string s formed by digits and '#'. We want to map s to English lowercase characters as follows:
+
+// Characters ('a' to 'i') are represented by ('1' to '9') respectively.
+// Characters ('j' to 'z') are represented by ('10#' to '26#') respectively.
+// Return the string formed after mapping.
+
+// The test cases are generated so that a unique mapping will always exist.
+
+var freqAlphabets = function (s) {
+    let news = "";
+    let re = "";
+    for (i=0;i<s.length;i++){
+        if ((s[i]>=3) || (s[i+2] !== "#")){
+             re = String.fromCharCode(96+Number(s[i]));
+  
+        }
+        else {          
+                re =String.fromCharCode(96+Number(s.slice(i,i+2)));
+                i +=2;
+            
+  
+        }
+        news += re;
+    }
+    return news;
+  
+  };
+  console.log(freqAlphabets("10#11#12"));
+  
+  
+  
+  
+  var freqAlphabets = function(s) {
+      const base = 'a'.charCodeAt(0) - 1;
+      return s.replace(/(\d\d#|\d)/g, c =>
+        c[2] === '#'
+          ? String.fromCharCode(base + parseInt(c.slice(0, -1)))
+          : String.fromCharCode(base + parseInt(c))
+      );
+    };
