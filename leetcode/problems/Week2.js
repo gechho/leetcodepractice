@@ -110,3 +110,41 @@ var freqAlphabets = function (s) {
           : String.fromCharCode(base + parseInt(c))
       );
     };
+
+
+// ************************************************** 953. Verifying an Alien Dictionary **************************************************
+var isAlienSorted = function (words, order) {
+    return words.reduce((a, b) => {
+        let len_a = a.length;
+        let len_b = b.length;
+        if (len_a > 0 && len_b > 0) {
+            if (a == b) { return true; }
+            if (b.search(a) != -1) { return true; }
+            if (a.search(b) != -1) { return false; }
+        }
+        for (i = 0; i < Math.min(len_a, len_b); i++) {
+            if (order.indexOf(a[i]) < order.indexOf(b[i])) { return true; }
+            if (order.indexOf(a[i]) > order.indexOf(b[i])) { return false; }
+        }
+        return false;
+    });
+};
+
+// OR 
+var isAlienSorted = function(words, order) {
+    for(let i=1;i<words.length;i++) {
+        const a = words[i-1]
+        const b = words[i]
+        const maxLen = Math.max(a.length, b.length)
+        for(let j=0;j<maxLen;j++) {
+            const indexA = order.indexOf(a[j])
+            const indexB = order.indexOf(b[j])
+            if (indexA > indexB) {
+                return false
+            } else if (indexA < indexB) {
+                j=maxLen
+            }
+        }
+    }
+    return true
+};
