@@ -113,6 +113,9 @@ var freqAlphabets = function (s) {
 
 
 // ************************************************** 953. Verifying an Alien Dictionary **************************************************
+// In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+
+// Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
 var isAlienSorted = function (words, order) {
     return words.reduce((a, b) => {
         let len_a = a.length;
@@ -148,3 +151,120 @@ var isAlienSorted = function(words, order) {
     }
     return true
 };
+
+
+// 1128. Number of Equivalent Domino Pairs
+
+// Given a list of dominoes, dominoes[i] = [a, b] is equivalent to dominoes[j] = [c, d] if and only if either (a == c and b == d),
+// or (a == d and b == c) - that is, one domino can be rotated to be equal to another domino.
+
+// Return the number of pairs (i, j) for which 0 <= i < j < dominoes.length, and dominoes[i] is equivalent to dominoes[j].
+
+var numEquivDominoPairs = function (dominoes) {
+  //   dominoes[4].sort();
+  //   console.log(dominoes[4]);
+  // console.log(dominoes.length);
+  let n = 0;
+  let result = [];
+  let count = {};
+  let test = dominoes.map( item => item.sort() );
+  // console.log(test);
+  test.forEach(item =>{
+   let a=item[0];
+   let b=item[1];
+
+   console.log('a,b: '+a,b);
+    if (count[item]){
+     // console.log('item: '+item);
+      count[item] += 1;
+      console.log(count)
+      return;
+
+    }
+    count[item] = 1;
+
+
+  })
+
+  //console.log('test1 is ', Object.values(count));
+  function n1(num) {
+    return num*(num-1)/2;
+  }
+  let sum =0;
+  let math1 = Object.values(count).map( cnt => (cnt > 1 ? n1(cnt) : 0) ).reduce((pr,cur,index)=>{
+     sum += cur;
+    //  console.log(pr, cur, index);
+     return sum;
+    },0);
+  // console.log(math1);
+
+
+
+
+  return sum;
+}
+ 
+
+console.log(
+  numEquivDominoPairs([
+    [1, 1],
+    [2, 1],
+    [1, 1],
+    [1, 2],
+    [1, 2],
+    [1, 1],
+    [2, 1],
+    [2, 2],
+    [1, 1]
+  ])
+);
+
+
+// ************************************************** Remove Duplicates from Sorted Array **************************************************
+
+/*
+ * @param {number[]} nums
+ * @return {number}
+ */
+// Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. 
+// The relative order of the elements should be kept the same.
+
+// Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. 
+// More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. 
+// It does not matter what you leave beyond the first k elements.
+
+// Return k after placing the final result in the first k slots of nums.
+
+
+
+var removeDuplicates = function (nums) {
+  let k = 0;
+  let seen = [];
+
+  nums.forEach((item, index) => {
+    if (seen.includes(item) == false) {
+      seen.splice(k, 0, item);
+      k++;
+    } else {
+      seen.push("_");
+    }
+  });
+  return seen;
+};
+console.log(removeDuplicates([1,1,2]));
+
+// Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+var removeDuplicates = function (nums) {
+  let k = 0;
+  for(let i=nums.length-1;i>=0;i--){
+    if (nums[i] == nums[i - 1]) {
+      nums.splice(i, 1);
+      nums.push("_");
+    } else {
+      k++;
+    }
+  }
+
+  return k;
+};
+console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
