@@ -120,3 +120,44 @@ var containsDuplicate = function(nums) {
   return false;
 };
 console.log(containsDuplicate([1, 2, 3, 1]));
+
+//**************************************************  136. Single Number ************************************************** 
+// Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+// You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var singleNumber = function(nums) {
+    let Count = {};
+    for (i=0;i<nums.length;i++){
+        if (Count[nums[i]]==null){
+            Count[nums[i]]=1;
+        }
+        else {
+            Count[nums[i]]++;
+            if (Count[nums[i]] ==2){
+                delete Count[nums[i]];
+            }
+        }
+    }
+   return Number(Object.keys(Count));
+
+};
+
+
+//OR
+
+var singleNumber = function(nums) {
+  var result = nums[0];
+  for(var i = 1; i < nums.length; i++) {
+      result = result^nums[i];
+      //^	(Bitwise XOR)	5 ^ 1 =>	0101 ^ 0001=>	0100=>	 4
+      // the same number XOR together would return 0000s, and has no effect to the result.
+      console.log(result,i)
+  }
+  return result;
+};
+console.log(singleNumber([1,3,4,2,5,2,3,4,1]));
