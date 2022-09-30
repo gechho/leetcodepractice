@@ -71,3 +71,52 @@ var maxProfit = function(prices) {
     }
 
 console.log(maxProfit([7,1,5,3,6,4]))
+
+// ************************************************** Rotate Array  **************************************************
+/*
+Given an array, rotate the array to the right by k steps, where k is non-negative.
+*/
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+
+
+
+
+// ************************************************** Rotate Array  **************************************************
+// Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+var containsDuplicate = function (nums) {
+  nums.sort();
+  let result = false;
+  console.log(nums);
+
+  for (i = 0; i < nums.length - 1; i++) {
+    console.log(nums[i], nums[i + 1]);
+    if (nums[i] == nums[i + 1]) {
+      return true;
+    }
+  }
+  return result;
+};
+// OR
+var containsDuplicate = function(nums) {
+  const count = {};
+  
+  for (let i = 0; i < nums.length; i++) {
+      const curr = nums[i];
+      if (count[curr] == null) {
+          count[curr] = 1;
+      } else {
+          count[curr]++;
+          if (count[curr] > 1) {
+              return true;
+          }
+      }
+      console.log(count);
+  }
+
+  return false;
+};
+console.log(containsDuplicate([1, 2, 3, 1]));
