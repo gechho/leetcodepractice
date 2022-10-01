@@ -161,3 +161,29 @@ var singleNumber = function(nums) {
   return result;
 };
 console.log(singleNumber([1,3,4,2,5,2,3,4,1]));
+
+// 350. Intersection of Two Arrays II
+// Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+var intersect = function (nums1, nums2) {
+  let n1 = nums1.length;
+  let n2 = nums2.length;
+  let numsl = [];
+  let numss = [];
+  let newnums = [];
+  let n = Math.min(n1, n2);
+
+  n1 >= n2
+    ? (numsl = nums1) && (numss = nums2)
+    : (numsl = nums2) && (numss = nums1);
+
+
+  for (i = n; i > 0; i--) {
+    if (numsl.includes(numss[i - 1]) == true) {
+      numsl.splice(numsl.indexOf(numss[i - 1]), 1);
+      let a = numss.splice(i - 1, 1);//need splice numss first, as if numss's number and index change, the indexOf[i-1] to locate the same number for numsl changes. it will result numsl splice the wrong number.
+      newnums.push(a);
+    }
+  }
+  return newnums;
+};
