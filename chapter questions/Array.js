@@ -181,7 +181,7 @@ var intersect = function (nums1, nums2) {
   for (i = n; i > 0; i--) {
     if (numsl.includes(numss[i - 1]) == true) {
       numsl.splice(numsl.indexOf(numss[i - 1]), 1);
-      let a = numss.splice(i - 1, 1);//need splice numss first, as if numss's number and index change, the indexOf[i-1] to locate the same number for numsl changes. it will result numsl splice the wrong number.
+      let a = numss.splice(i - 1, 1);//need splice numss after splice numsl, as if numss's number and index change, the indexOf[i-1] to locate the same number for numsl changes. it will result numsl splice the wrong number.
       newnums.push(a);
     }
   }
