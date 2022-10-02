@@ -187,3 +187,36 @@ var intersect = function (nums1, nums2) {
   }
   return newnums;
 };
+
+
+
+
+// 189. Rotate Array
+// Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+
+// Better solution:
+var rotate = function(nums, k) {
+    k=k%nums.length;
+    console.log(k);
+    nums.unshift(...nums.splice(nums.length - k));
+    return nums;
+};
+// OR
+var rotate = function (nums, k) {
+  let arr = [];
+  let n = 0;
+  (k > nums.length )? (n = k %nums.length) : (n = k);
+  console.log('n: '+n);
+  if (k % nums.length ==0) return nums;
+  else {
+      arr = nums.splice(-n).reverse();
+      console.log('arr: '+arr);
+      for (x of arr) {
+          nums.unshift(x);
+      }
+  return nums;
+};
+}
+
+
