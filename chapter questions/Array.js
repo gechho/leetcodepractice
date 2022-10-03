@@ -220,3 +220,73 @@ var rotate = function (nums, k) {
 }
 
 
+// Plus One
+/* You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. 
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+*/
+/**
+//  * @param {number[]} digits
+//  * @return {number[]}
+//  */
+// var plusOne = function (digits) {
+//   let arr = "";
+//   digits.forEach((element) => {
+//     arr += element;
+//   });
+//    console.log(arr);
+//   let num = Number(arr);
+//   console.log('num: '+num);
+//   var myArr = String(num).split("").map((num)=>{
+//     console.log(num);
+//     return Number(num) //(as javascript only can not read big number, so after 16th digit, it will show as 0. that's why it won't work )
+
+//   })
+//   return myArr;
+// };
+
+// var plusOne = function (digits) {
+//   for (i = digits.length; i > 0; i--) {
+//     if (digits[i - 1] < 9) {
+//       digits[i - 1] ++;
+//       break;
+//     } else {
+//       if (i > 1) {
+//         digits[i - 1] = 0;
+//       } else {
+//         digits[i - 1] = 0;
+//         digits.unshift(1);
+//       }
+//     }
+//   }
+//   return digits;
+// };
+// function plusOne(digits) {
+//     let co = true;
+//     for (let i = digits.length - 1; i >= 0 && co; i--) {
+//       digits[i]++;
+//       console.log(digits[i]);
+//       co = digits[i] >= 10;
+//       console.log('co: '+co);
+//       console.log('digits i = 0: '+ (digits[i] = 0));
+//       co && (digits[i] = 0);
+//     }
+//     co && digits.unshift(1);
+//     return digits;
+//   }
+
+let plusOne = function(digits) {
+  for(let i=digits.length-1;i>=0;i--){
+      digits[i]++;
+      if(digits[i]>9){
+          digits[i]=0;
+      }
+      else{
+          return digits;
+      }
+  }
+  digits.unshift(1);
+  return digits;
+};
+console.log(plusOne([8, 9, 9, 9, 9, 9]));
