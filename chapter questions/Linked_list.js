@@ -152,3 +152,93 @@ var removeNthFromEnd = function(head, n) {
 
     
 };
+
+
+var mergeTwoLists = function(l1, l2) {
+    let list = new ListNode()
+    let head = list
+    
+    while (l1 !== null && l2 !== null) {
+	
+		// Select the smallest value from either linked list,
+		// then increment that list forward.
+        if (l1.val < l2.val) {
+            list.next = new ListNode(l1.val)
+            l1 = l1.next
+        } else {
+            list.next = new ListNode(l2.val)
+            l2 = l2.next
+        }
+        
+        list = list.next
+    }
+    
+	// It's possible that one linked list is shorter than the other so we just
+	// add on the remainder of the last linked list. It's already sorted :)
+    if (l1 !== null)
+        list.next = l1
+    if (l2 !== null)
+        list.next = l2
+    
+	// return .next because this first element in the linkedlist is empty
+    return head.next
+};
+
+
+
+var middle = function(head) {
+    let slow = head;
+    let fast = head;
+    while(fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+};
+var reverse = function(head) {
+    let prev = null;
+    let cur = head;
+    while(cur) {
+        let temp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = temp;
+    }
+    return prev;
+};
+var isPalindrome = function(head) {
+    let mid = middle(head);
+    let h1 = head;
+    let h2 = reverse(mid);
+    
+    while(h1 && h2) {
+        if(h1.val != h2.val) return false;
+        h1 = h1.next;
+        h2 = h2.next;
+    }
+    return true;
+};
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+ var hasCycle = function(head) {
+    let fast = head, slow = head;
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+        if (fast == slow) {
+            return true;
+        }
+    } 
+    return false;
+};
