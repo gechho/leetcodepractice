@@ -152,7 +152,13 @@ var removeNthFromEnd = function(head, n) {
 
     
 };
+//Merge Two Sorted Lists
+/*You are given the heads of two sorted linked lists list1 and list2.
 
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+*/
 
 var mergeTwoLists = function(l1, l2) {
     let list = new ListNode()
@@ -195,6 +201,11 @@ var middle = function(head) {
     }
     return slow;
 };
+
+//Reverse Linked List
+/*
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+*/
 var reverse = function(head) {
     let prev = null;
     let cur = head;
@@ -206,6 +217,11 @@ var reverse = function(head) {
     }
     return prev;
 };
+
+//Palindrome Linked List
+/*
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+*/
 var isPalindrome = function(head) {
     let mid = middle(head);
     let h1 = head;
@@ -226,7 +242,14 @@ var isPalindrome = function(head) {
  *     this.next = null;
  * }
  */
+//Linked List Cycle
+/*
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
 
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+*/
 /**
  * @param {ListNode} head
  * @return {boolean}
